@@ -106,7 +106,7 @@ final public class CSharedPreferences extends CKVStorage {
 
     @Override
     public double getDoubleVal(String sKey, String sSubKey){
-        return this.mSP.getFloat(this.getIdxKey(sKey,sSubKey), 0.0f);
+        return (double) this.mSP.getFloat(this.getIdxKey(sKey,sSubKey), 0.0f);
     }
 
     @Override
