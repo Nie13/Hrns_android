@@ -20,8 +20,8 @@ import java.util.concurrent.Executors;
 
 public abstract class BTSerialComm {
     public final static String UUID_SPP = "00001101-0000-1000-8000-00805F9B34FB";
-    private static final int IBUF_TOTAL = 1024*50;
-    private final byte[] mbReceiveBufs = new byte[IBUF_TOTAL];
+    private static final int iBUF_TOTAL = 1024*50;
+    private final byte[] mbReceiveBufs = new byte[iBUF_TOTAL];
     private int miBufDataSite = 0;
     private String msMAC;
     private boolean mbConectOk = false;
@@ -71,12 +71,12 @@ public abstract class BTSerialComm {
                     this.mosOut.close();
                 if (null != this.mbsSocket)
                     this.mbsSocket.close();
-                this.mbsSocket = false;
+                this.mbConectOk = false;
             }catch (IOException e){
                 this.misIn = null;
                 this.mosOut = null;
                 this.mbsSocket = null;
-                this.mbConectOk = null;
+                this.mbConectOk = false;
             }finally{
                 this.mlConnDisableTime = System.currentTimeMillis();
             }
