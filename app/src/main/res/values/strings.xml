@@ -4,4 +4,8 @@
     <string name="actMain_menu_rescan">Rescan</string>
     <string name="menu_about">About</string>
     <string name="menu_close">Exit</string>
+    <string name="actMain_link_device_info_title">Device info title: </string>
+    <string name="actMain_device_info">device info</string>
+    <string name="actMain_link_device_service_uuid">device uuid</string>
+    <string name="actMain_service_uuid">uuid</string>
 </resources>

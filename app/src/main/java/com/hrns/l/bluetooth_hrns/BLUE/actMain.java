@@ -141,7 +141,8 @@ public class actMain extends Activity{
         }
 
         this.initFirstInstallTimestemp();
-        this.mtvDeviceInfo = (TextView) this.findViewById(R.id.actMain)
+        this.mtvDeviceInfo = (TextView) this.findViewById(R.id.actMain_tv_device_info);
+        this.mtvServiceUUID = (TextView) this.findViewById(R.id.actMain_tv_service_uuid)
     }
 
 
