@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">bluetooth_hrns</string>
+    <string name="actMain_name">bluetooth hrns</string>
+    <string name="actMain_menu_rescan">Rescan</string>
+    <string name="menu_about">About</string>
+    <string name="menu_close">Exit</string>
 </resources>
