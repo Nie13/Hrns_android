@@ -11,7 +11,7 @@ import android.util.Log;
  */
 
 public class BluetoothCtrl {
-    static public final String PARING_REQUEST = "android.bluetooth.device.action.PAIRING_REQUEST";
+    static public final String PAIRING_REQUEST = "android.bluetooth.device.action.PAIRING_REQUEST";
 
     static public boolean createBond(BluetoothDevice btDevice) throws Exception{
         Class<? extends BluetoothDevice> btClass = btDevice.getClass();
