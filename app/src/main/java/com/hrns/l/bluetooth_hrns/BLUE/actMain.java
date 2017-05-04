@@ -190,13 +190,13 @@ public class actMain extends Activity{
     }
 
     private void openDiscovery(){
-        Intent intent = new Intent(this, actDiscovery.class);
-        this.startActivityForResult(intent, REQUEST_DISCOVERY);
+        //Intent intent = new Intent(this, actDiscovery.class);
+        //this.startActivityForResult(intent, REQUEST_DISCOVERY);
     }
 
     private void openAbout(){
-        Intent intent = new Intent(this, actAbout.class);
-        this.startActivityForResult(intent, REQUEST_ABOUT);
+        //Intent intent = new Intent(this, actAbout.class);
+        //this.startActivityForResult(intent, REQUEST_ABOUT);
     }
 
     private void showDeviceInfo(){
@@ -255,18 +255,18 @@ public class actMain extends Activity{
     }
 
     public void onClickBtnSerialStreamMode(View v){
-        Intent intent = new Intent(this, actByteStream.class);
-        this.startActivityForResult(intent, REQUEST_BYTE_STREAM);
+       // Intent intent = new Intent(this, actByteStream.class);
+        //this.startActivityForResult(intent, REQUEST_BYTE_STREAM);
     }
 
     public void onClickBtnbKeyBoardMode(View v){
-        Intent intent = new Intent(this, actKeyBoard.class);
+        Intent intent = new Intent(this, actRealTime.class);
         this.startActivityForResult(intent, REQUEST_KEY_BOARD);
     }
 
     public void onClickBtnCommandLine(View v){
-        Intent intent = new Intent(this, actCmdLine.class);
-        this.startActivityForResult(intent, REQUEST_CMD_LINE);
+        //Intent intent = new Intent(this, actCmdLine.class);
+        //this.startActivityForResult(intent, REQUEST_CMD_LINE);
     }
 
     private class startBluetoothDeviceTask extends AsyncTask<String, String, Integer>{

@@ -30,4 +30,18 @@
     <string name="actMain_msg_device_connecting">on connecting</string>
     <string name="actMain_msg_device_connect_succes">connect success</string>
     <string name="actMain_msg_device_connect_fail">connect fail</string>
+    <string name="msg_save_file_fail">fail saving files</string>
+    <string name="templet_txd">Txd: %1$dB</string>
+    <string name="templet_rxd">Rxd: %1$dB</string>
+    <string name="templet_hole_time">Running: %1$ds</string>
+    <string name="dialog_title_io_mode_set">set dialog title</string>
+    <string name="dialog_io_mode_input_set">Input type</string>
+    <string name="dialog_io_mode_ascii">ASCII</string>
+    <string name="dialog_io_mode_hex">HEX</string>
+    <string name="dialog_io_mode_output_set">OUTPUT TYPE</string>
+    <string name="msg_receive_data_wating">Waiting to receive&#8230;\n</string>
+    <string name="menu_clear">clear</string>
+    <string name="menu_io_mode">io mode</string>
+    <string name="menu_save_to_file">save</string>
+    <string name="menu_clear_history">clr his</string>
 </resources>
