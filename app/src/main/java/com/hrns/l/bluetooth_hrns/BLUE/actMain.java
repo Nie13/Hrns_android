@@ -255,8 +255,8 @@ public class actMain extends Activity{
     }
 
     public void onClickBtnSerialStreamMode(View v){
-       // Intent intent = new Intent(this, actByteStream.class);
-        //this.startActivityForResult(intent, REQUEST_BYTE_STREAM);
+        Intent intent = new Intent(this, actRealTime.class);
+        this.startActivityForResult(intent, REQUEST_BYTE_STREAM);
     }
 
     public void onClickBtnbKeyBoardMode(View v){

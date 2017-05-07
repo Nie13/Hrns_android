@@ -1,8 +1,10 @@
 package com.hrns.l.bluetooth_hrns.BLUE;
 
 import android.app.Activity;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.SystemClock;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -14,15 +16,13 @@ import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
-import java.util.Random;
-
 /**
  * Created by l on 5/3/2017.
  */
 
 public class actRealTime extends BaseCommActivity{
-    private final Handler mHandler = new Handler();
-    private Runnable mTimer;
+    //private final Handler mHandler = new Handler();
+    //private Runnable mTimer;
     private double graphLastXValue = 5d;
     private LineGraphSeries<DataPoint> mSeries;
     private GraphView graph;
@@ -107,7 +107,51 @@ public class actRealTime extends BaseCommActivity{
             this.save2SD(this.mtvReceive.getText().toString().trim());
     }
 
-    
+    private class receiveTask extends AsyncTask<String, String, Integer>{
+        private final static byte CONNECT_LOST = 0x01;
+        private final static byte THREAD_END = 0x02;
+
+        @Override
+        public void onPreExecute(){
+            mtvReceive.setText(getString(R.string.msg_receive_data_wating));
+            mbThreadStop = false;
+        }
+        @Override
+        protected Integer doInBackground(String... arg0){
+            mBSC.Receive();
+            while(!mbThreadStop){
+                if(!mBSC.isConnect())
+                    return (int)CONNECT_LOST;
+                if(mBSC.getReceiveBufLen() > 0){
+                    SystemClock.sleep(20);
+                    this.publishProgress(mBSC.Receive());
+                }
+            }
+
+            return (int)THREAD_END;
+        }
+
+        @Override
+        public void onProgressUpdate(String... progress){
+            if(null != progress[0]){
+                mtvReceive.append(progress[0]);
+                autoScroll();
+                double newpoint = Double.parseDouble(progress[0]);
+                graphLastXValue += 0.25d;
+                mSeries.appendData(new DataPoint(graphLastXValue, newpoint), true, 22);
+            }
+        }
+
+        @Override
+        public void onPostExecute(Integer result){
+            if(CONNECT_LOST == result)
+                mtvReceive.append(getString(R.string.msg_msg_bt_connect_lost));
+            else
+                mtvReceive.append(getString(R.string.msg_receive_data_stop));
+        }
+    }
+
+
 
     public void initGraph(GraphView graph){
         graph.getViewport().setXAxisBoundsManual(true);
@@ -122,7 +166,7 @@ public class actRealTime extends BaseCommActivity{
         graph.addSeries(mSeries);
     }
 
-    public void onResume(){
+    /*public void onResume(){
         mTimer = new Runnable() {
             @Override
             public void run() {
@@ -143,5 +187,5 @@ public class actRealTime extends BaseCommActivity{
 
     private double getRandom(){
         return mLastRandom += mRand.nextDouble() * 0.5 -0.25;
-    }
+    }*/
 }
