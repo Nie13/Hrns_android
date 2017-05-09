@@ -45,4 +45,5 @@
     <string name="menu_save_to_file">save</string>
     <string name="menu_clear_history">clr his</string>
     <string name="msg_receive_data_stop">data Stop</string>
+    <string name="actDiscovery_msg_not_find_device">NOT FIND DEVICE</string>
 </resources>
