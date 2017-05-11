@@ -9,11 +9,32 @@
     <uses-feature android:name="android.hardware.bluetooth" android:required="true"/>
 
     <application
+        android:name="com.hrns.l.bluetooth_hrns.BLUE.globalPool"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"></application>
+        android:theme="@style/AppTheme">
+
+        <activity
+            android:name="com.hrns.l.bluetooth_hrns.BLUE.actMain"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity android:name="com.hrns.l.bluetooth_hrns.BLUE.actDiscovery"
+            android:label="@string/actDiscovery_name"
+            android:screenOrientation="portrait"
+            android:launchMode="standard"
+            android:configChanges="keyboardHidden|navigation|orientation|screenSize"/>
+        <activity android:name="com.hrns.l.bluetooth_hrns.BLUE.actRealTime"
+            android:label="@string/actByteStream_name"
+            android:launchMode="singleTop"
+            android:configChanges="keyboardHidden|navigation|orientation|screenSize"/>
+    </application>
 
 </manifest>
