@@ -15,7 +15,7 @@
     <string name="actKeyBoard_name">act keyboard mode</string>
     <string name="actCmdLine_name">act command line mode</string>
     <string name="actMain_msg_does_not_support_uuid_service">cuz SDKnotmore15, no UUID got</string>
-    <string name="actDiscovery_bond_nothing">Nothing Found Bond</string>
+    <string name="actDiscovery_bond_nothing">Nothing</string>
     <string name="actMain_tv_hint_service_uuid_not_bond">uuid not found</string>
     <string name="msg_msg_bt_connect_lost">LOST DA CONNECTION</string>
     <string name="actDiscovery_msg_starting_device">BLE on ACTIVATING</string>
@@ -44,4 +44,14 @@
     <string name="menu_io_mode">io mode</string>
     <string name="menu_save_to_file">save</string>
     <string name="menu_clear_history">clr his</string>
+    <string name="msg_receive_data_stop">data Stop</string>
+    <string name="actDiscovery_msg_not_find_device">NOT FIND DEVICE</string>
+    <string name="actDiscovery_btn_rescan">RESCAN</string>
+    <string name="actDiscovery_btn_connect">CONNECT DA DEVICE!!!</string>
+    <string name="device_type_bredr">BR/EDR Bluetooth</string>
+    <string name="device_type_ble">Low Energy Bluetooth</string>
+    <string name="device_type_dumo">Duplex mode Bluetooth</string>
+    <string name="actDiscovery_msg_scaning_device">SCANNING......</string>
+    <string name="actDiscovery_name">act discovery mode</string>
+    <string name="msg_not_hex_string">Invalid HEX string</string>
 </resources>
