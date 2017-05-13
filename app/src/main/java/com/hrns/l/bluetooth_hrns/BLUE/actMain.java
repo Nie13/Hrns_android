@@ -24,7 +24,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.hrns.l.bluetooth_hrns.R;
 import com.hrns.l.bluetooth_hrns.bluetooth.BluetoothCtrl;
 import com.hrns.l.bluetooth_hrns.storage.CKVStorage;
 import com.hrns.l.bluetooth_hrns.storage.CSharedPreferences;
@@ -163,7 +162,7 @@ public class actMain extends Activity{
 
         this.mGP = ((globalPool) this.getApplicationContext());
 
-        //new startBluetoothDeviceTask().execute("");
+        new startBluetoothDeviceTask().execute("");
     }
 
     private void initFirstInstallTimestemp(){
@@ -190,8 +189,8 @@ public class actMain extends Activity{
     }
 
     private void openDiscovery(){
-        //Intent intent = new Intent(this, actDiscovery.class);
-        //this.startActivityForResult(intent, REQUEST_DISCOVERY);
+        Intent intent = new Intent(this, actDiscovery.class);
+        this.startActivityForResult(intent, REQUEST_DISCOVERY);
     }
 
     private void openAbout(){
@@ -255,7 +254,7 @@ public class actMain extends Activity{
     }
 
     public void onClickBtnSerialStreamMode(View v){
-        Intent intent = new Intent(this, actRealTime.class);
+        Intent intent = new Intent(this, actByteStream.class);
         this.startActivityForResult(intent, REQUEST_BYTE_STREAM);
     }
 

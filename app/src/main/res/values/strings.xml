@@ -53,4 +53,5 @@
     <string name="device_type_dumo">Duplex mode Bluetooth</string>
     <string name="actDiscovery_msg_scaning_device">SCANNING......</string>
     <string name="actDiscovery_name">act discovery mode</string>
+    <string name="msg_not_hex_string">Invalid HEX string</string>
 </resources>

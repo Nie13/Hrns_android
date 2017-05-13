@@ -12,25 +12,20 @@ import android.content.IntentFilter;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.SystemClock;
-import android.support.v7.widget.LinearLayoutCompat;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.hrns.l.bluetooth_hrns.R;
-
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Hashtable;
-import java.util.Objects;
 import java.util.regex.Pattern;
 
 /**
@@ -49,6 +44,14 @@ public class actDiscovery extends Activity {
 
     private BluetoothAdapter mBT = BluetoothAdapter.getDefaultAdapter();
     private ListView mlvList = null;
+
+    private TextView mtvName = null;
+    private TextView mtvRssi = null;
+    private TextView mtvCod =  null;
+    private TextView mtvBond = null;
+    private TextView mtvDevicetype = null;
+    private TextView mtvMac = null;
+    private SimpleAdapter mtvItemAdapter = null;
 
     private Button mbtnRescan = null;
     private Button mbtnConn = null;
@@ -106,19 +109,36 @@ public class actDiscovery extends Activity {
         setContentView(R.layout.act_discovery);
         this.mbtnRescan = (Button)this.findViewById(R.id.discovery_btn_rescan);
         this.mbtnConn = (Button)this.findViewById(R.id.discovery_btn_connect);
+        this.mtvBond = (TextView)this.findViewById(R.id.device_item_ble_bond);
+        this.mtvCod = (TextView)this.findViewById(R.id.device_item_ble_cod);
+        this.mtvDevicetype = (TextView)this.findViewById(R.id.device_item_ble_device_type);
+        this.mtvName = (TextView)this.findViewById(R.id.device_item_ble_name);
+        this.mtvRssi = (TextView)this.findViewById(R.id.device_item_ble_rssi);
+        this.mtvMac = (TextView)this.findViewById(R.id.device_item_ble_mac) ;
         this.mbtnConn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String sMAC = ((TextView)v.findViewById(R.id.device_item_ble_mac)).getText().toString();
+                String sMAC = "00:06:66:76:9E:62";
                 Intent result = new Intent();
                 result.putExtra("MAC", sMAC);
-                result.putExtra("RSSI", mhtFDS.get(sMAC).get("RSSI"));
-                result.putExtra("NAME",mhtFDS.get(sMAC).get("NAME"));
-                result.putExtra("COD",mhtFDS.get(sMAC).get("COD"));
-                result.putExtra("BOND",mhtFDS.get(sMAC).get("BOND"));
-                result.putExtra("DEVICE_TYPE",toDeviceTypeString(mhtFDS.get(sMAC).get("DEVICE_TYPE")));
+                result.putExtra("RSSI", "-35");
+                result.putExtra("NAME", "RNBT-9E62");
+                result.putExtra("COD", "1f00");
+                result.putExtra("DEVICE_TYPE", "BR/EDR Bluetooth");
+                result.putExtra("BOND", "Bonded");
+                //result.putExtra("RSSI", mhtFDS.get(sMAC).get("RSSI"));
+                //result.putExtra("NAME",mhtFDS.get(sMAC).get("NAME"));
+                //result.putExtra("COD",mhtFDS.get(sMAC).get("COD"));
+                //result.putExtra("BOND",mhtFDS.get(sMAC).get("BOND"));
+                //result.putExtra("DEVICE_TYPE",toDeviceTypeString(mhtFDS.get(sMAC).get("DEVICE_TYPE")));
                 setResult(Activity.RESULT_OK, result);
                 finish();
+            }
+        });
+        this.mbtnRescan.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                new scanDeviceTask().execute("");
             }
         });
 
@@ -200,26 +220,41 @@ public class actDiscovery extends Activity {
     }
 
     protected void showDevices(){
-        if(null == this.malListItem)
+        /*if(null == this.malListItem)
             this.malListItem = new ArrayList<HashMap<String, Object>>();
         if(null == this.msaListItemAdapter){
             this.msaListItemAdapter = new SimpleAdapter(this, malListItem, R.layout.act_discovery, new String[] {"NAME", "MAC", "COD", "RSSI", "DEVICE_TYPE", "BOND"}, new int[] {R.id.device_item_ble_name, R.id.device_item_ble_mac, R.id.device_item_ble_cod, R.id.device_item_ble_rssi, R.id.device_item_ble_device_type, R.id.device_item_ble_bond});
             this.mlvList.setAdapter(this.msaListItemAdapter);
         }
-        this.malListItem.clear();
+        this.malListItem.clear();*/
+
         Enumeration<String> e = this.mhtFDS.keys();
         while(e.hasMoreElements()){
-            HashMap<String, Object> map = new HashMap<String, Object>();
+            String sKey = e.nextElement();
+            if("00:06:66:76:9E:62".equals(sKey)){
+                this.mtvMac.setText(sKey);
+                this.mtvName.setText(this.mhtFDS.get(sKey).get("NAME"));
+                this.mtvBond.setText(this.mhtFDS.get(sKey).get("BOND"));
+                this.mtvRssi.setText(this.mhtFDS.get(sKey).get("RSSI"));
+                this.mtvCod.setText(this.mhtFDS.get(sKey).get("COD"));
+                this.mtvDevicetype.setText(toDeviceTypeString(this.mhtFDS.get(sKey).get("DEVICE_TYPE")));
+                this.mbtnRescan.setVisibility(View.GONE);
+            }else{
+                this.mbtnRescan.setVisibility(View.VISIBLE);
+                this.mbtnConn.setVisibility(View.GONE);
+                this.mtvName.setText("DEVICE UNFOUND");
+            }
+            /*HashMap<String, Object> map = new HashMap<String, Object>();
             String sKey = e.nextElement();
             map.put("MAC", sKey);
             map.put("NAME", this.mhtFDS.get(sKey).get("NAME"));
             map.put("RSSI", this.mhtFDS.get(sKey).get("RSSI"));
             map.put("COD", this.mhtFDS.get(sKey).get("COD"));
             map.put("BOND", this.mhtFDS.get(sKey).get("BOND"));
-            map.put("DEVICE_TYPE", toDeviceTypeString(this.mhtFDS.get(sKey).get("DEVICE_TYPE")));
-            this.malListItem.add(map);
+            map.put("DEVICE_TYPE", toDeviceTypeString(this.mhtFDS.get(sKey).get("DEVICE_TYPE")));*/
+            //this.malListItem.add(map);
         }
-        this.msaListItemAdapter.notifyDataSetChanged();
+        //this.msaListItemAdapter.notifyDataSetChanged();
 
     }
 

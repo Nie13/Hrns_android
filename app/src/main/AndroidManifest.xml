@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.hrns.l.bluetooth_hrns">
+    package="com.hrns.l.bluetooth_hrns.BLUE">
 
     <uses-permission android:name="android.permission.BLUETOOTH"/>
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
@@ -32,6 +32,10 @@
             android:launchMode="standard"
             android:configChanges="keyboardHidden|navigation|orientation|screenSize"/>
         <activity android:name="com.hrns.l.bluetooth_hrns.BLUE.actRealTime"
+            android:label="@string/actByteStream_name"
+            android:launchMode="singleTop"
+            android:configChanges="keyboardHidden|navigation|orientation|screenSize"/>
+        <activity android:name="com.hrns.l.bluetooth_hrns.BLUE.actByteStream"
             android:label="@string/actByteStream_name"
             android:launchMode="singleTop"
             android:configChanges="keyboardHidden|navigation|orientation|screenSize"/>

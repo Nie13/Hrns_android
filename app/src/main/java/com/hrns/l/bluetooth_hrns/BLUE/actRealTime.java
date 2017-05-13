@@ -3,7 +3,6 @@ package com.hrns.l.bluetooth_hrns.BLUE;
 import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.SystemClock;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -11,7 +10,6 @@ import android.view.MenuItem;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import com.hrns.l.bluetooth_hrns.R;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
@@ -36,16 +34,17 @@ public class actRealTime extends BaseCommActivity{
         this.graph = (GraphView)this.findViewById(R.id.graph);
         this.mtvReceive = (TextView)this.findViewById(R.id.act_realtime_tv_receive);
         this.msvCtl = (ScrollView)this.findViewById(R.id.act_realtime_sv_scroll);
-        this.enabledBack();
+        //this.enabledBack();
         this.initIO_Mode();
         //GraphView graph = (GraphView) activity.findViewById(R.id.graph);
         initGraph(graph);
+        new receiveTask().executeOnExecutor(FULL_TASK_EXECUTOR);
     }
 
     @Override
     public void onDestroy(){
         super.onDestroy();
-        this.saveAutoComplateCmdHistory(this.getLocalClassName());
+        //this.saveAutoComplateCmdHistory(this.getLocalClassName());
     }
 
     @Override
@@ -136,9 +135,9 @@ public class actRealTime extends BaseCommActivity{
             if(null != progress[0]){
                 mtvReceive.append(progress[0]);
                 autoScroll();
-                double newpoint = Double.parseDouble(progress[0]);
-                graphLastXValue += 0.25d;
-                mSeries.appendData(new DataPoint(graphLastXValue, newpoint), true, 22);
+                //double newpoint = Double.parseDouble(progress[0]);
+                //graphLastXValue += 0.25d;
+                //mSeries.appendData(new DataPoint(graphLastXValue, newpoint), true, 22);
             }
         }
 
@@ -156,7 +155,7 @@ public class actRealTime extends BaseCommActivity{
     public void initGraph(GraphView graph){
         graph.getViewport().setXAxisBoundsManual(true);
         graph.getViewport().setMinX(0);
-        graph.getViewport().setMinX(8);
+        graph.getViewport().setMaxX(8);
 
         graph.getGridLabelRenderer().setLabelVerticalWidth(100);
 

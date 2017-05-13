@@ -11,12 +11,9 @@ import android.widget.AutoCompleteTextView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
-import com.hrns.l.bluetooth_hrns.R;
 import com.hrns.l.bluetooth_hrns.bluetooth.BluetoothSppClient;
 import com.hrns.l.bluetooth_hrns.storage.CJsonStorage;
 import com.hrns.l.bluetooth_hrns.storage.CKVStorage;
-
-
 
 import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;

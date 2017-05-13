@@ -6,7 +6,6 @@ import android.icu.text.SimpleDateFormat;
 import android.os.Build;
 import android.widget.Toast;
 
-import com.hrns.l.bluetooth_hrns.R;
 import com.hrns.l.bluetooth_hrns.util.LocalIOTools;
 
 import java.io.ByteArrayOutputStream;

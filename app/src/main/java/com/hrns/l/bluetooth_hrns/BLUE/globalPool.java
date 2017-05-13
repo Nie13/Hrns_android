@@ -2,7 +2,6 @@ package com.hrns.l.bluetooth_hrns.BLUE;
 
 import android.app.Application;
 
-import com.hrns.l.bluetooth_hrns.R;
 import com.hrns.l.bluetooth_hrns.bluetooth.BluetoothSppClient;
 import com.hrns.l.bluetooth_hrns.storage.CJsonStorage;
 import com.hrns.l.bluetooth_hrns.storage.CKVStorage;
